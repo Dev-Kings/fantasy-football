@@ -11,4 +11,8 @@ class Pool extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['pool_name'];
+
+    public function clubs(){
+        return $this->hasMany(Club::class);
+    }
 }

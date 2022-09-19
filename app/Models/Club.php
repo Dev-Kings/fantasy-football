@@ -10,5 +10,13 @@ class Club extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['club_name'];
+    protected $fillable = ['pool_id', 'club_name'];
+
+    public function pool(){
+        return $this->belongsTo(Pool::class);
+    }
+
+    public function players(){
+        return $this->hasMany(Player::class);
+    }
 }

@@ -2,16 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ClubResource\Pages;
-use App\Filament\Resources\ClubResource\RelationManagers;
-use App\Models\Club;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\Club;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ClubResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ClubResource\RelationManagers;
 
 class ClubResource extends Resource
 {
@@ -23,9 +26,10 @@ class ClubResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('club_name')
-                    ->required()
-                    ->maxLength(255),
+                Select::make('pool_id')
+                    ->relationship('pool', 'pool_name')
+                    ->required(),
+                TextInput::make('club_name')->required()->dehydrateStateUsing(fn ($state) => ucwords($state))
             ]);
     }
 
@@ -33,7 +37,8 @@ class ClubResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('club_name'),
+                TextColumn::make('pool.pool_name')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('club_name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -54,14 +59,14 @@ class ClubResource extends Resource
                 Tables\Actions\ForceDeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -70,8 +75,8 @@ class ClubResource extends Resource
             'view' => Pages\ViewClub::route('/{record}'),
             'edit' => Pages\EditClub::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

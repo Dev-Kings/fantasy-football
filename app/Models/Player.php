@@ -10,5 +10,9 @@ class Player extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['player_id', 'position', 'player_position'];
+    protected $fillable = ['club_id', 'player_id', 'position', 'player_position'];
+
+    public function club(){
+        return $this->belongsTo(Club::class);
+    }
 }
