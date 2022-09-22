@@ -2,16 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PlayerResource\Pages;
-use App\Filament\Resources\PlayerResource\RelationManagers;
-use App\Models\Player;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\Player;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use HiFolks\RandoPhp\Randomize;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PlayerResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PlayerResource\RelationManagers;
 
 class PlayerResource extends Resource
 {
@@ -23,6 +26,9 @@ class PlayerResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('club_id')
+                    ->relationship('club', 'club_name')
+                    ->required(),
                 Forms\Components\TextInput::make('player_id')
                     ->required(),
                 Forms\Components\TextInput::make('position')
@@ -37,6 +43,7 @@ class PlayerResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('club.club_name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('player_id'),
                 Tables\Columns\TextColumn::make('position'),
                 Tables\Columns\TextColumn::make('player_name'),
