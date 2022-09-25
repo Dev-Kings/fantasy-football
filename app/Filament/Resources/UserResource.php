@@ -48,12 +48,12 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('email_verified_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 //

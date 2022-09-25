@@ -47,12 +47,12 @@ class PlayerResource extends Resource
                 Tables\Columns\TextColumn::make('player_id'),
                 Tables\Columns\TextColumn::make('position'),
                 Tables\Columns\TextColumn::make('player_name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('deleted_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

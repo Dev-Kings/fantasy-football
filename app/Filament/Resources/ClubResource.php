@@ -39,12 +39,12 @@ class ClubResource extends Resource
             ->columns([
                 TextColumn::make('pool.pool_name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('club_name')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('deleted_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

@@ -35,12 +35,12 @@ class PoolResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('pool_name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('deleted_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
